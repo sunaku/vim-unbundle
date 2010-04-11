@@ -1,2 +1,2 @@
-" append bundle/* subdirectories in the runtimepath to the runtimepath
-let &rtp = join([&rtp] + split(globpath(&rtp, 'bundle/*/'), "\n"), ',')
+" append all bundle/*/{,after/} subdirs in the runtimepath to the runtimepath
+let &rtp = tr(join([&rtp, globpath(&rtp, 'bundle/*/'), globpath(&rtp, 'bundle/*/after/')], ','), "\n", ',')
