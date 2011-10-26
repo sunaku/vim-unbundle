@@ -23,6 +23,13 @@ To install, place `unbundle.vim` somewhere on your system and then source it:
 
 Add the line above to your vimrc file to use Unbundle every time you run Vim.
 
+### Dynamic Bootstrapping Example
+
+If you installed Unbundle at `~/.vim/bundle/vim-unbundle/` then add the
+following line to your vimrc file to dynamically bootstrap your Unbundle:
+
+    execute 'source '. globpath(&runtimepath, 'bundle/vim-unbundle/unbundle.vim')
+
 ------------------------------------------------------------------------------
 License
 ------------------------------------------------------------------------------
