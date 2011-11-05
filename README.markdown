@@ -1,8 +1,9 @@
-unbundle.vim - Registers [bundles] found in Vim's runtimepath
+unbundle.vim - Activates [bundles] found in Vim's runtimepath
 =============================================================
 
 Ubundle is a 4-line alternative to [Pathogen]'s bundle registration logic,
-plus a 2-line convenience for activation of ftplugins inside your [bundles].
+plus a 5-line alternative to [Pathogen]'s bundle helptags generation logic,
+and a 2-line convenience for activation of ftplugins inside your [bundles].
 
 ------------------------------------------------------------------------------
 Background
