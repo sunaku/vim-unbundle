@@ -1,7 +1,7 @@
 unbundle.vim - Registers [bundles] found in Vim's runtimepath
 =============================================================
 
-Ubundle is a 4-line replacement for [Pathogen]'s bundle registration logic,
+Ubundle is a 4-line alternative to [Pathogen]'s bundle registration logic,
 plus a 2-line convenience for activation of ftplugins inside your [bundles].
 
 ------------------------------------------------------------------------------
@@ -11,7 +11,7 @@ Background
 Unbundle looks for directories called `bundle/` in Vim's runtimepath and then
 adds all subdirectories therein back into Vim's runtimepath.  This lets you
 keep your [bundles] isolated in their own directories, instead of having to
-share your configuration directory (`~/.vim`) communally with your [bundles].
+share your Vim user configuration directory communally with your [bundles].
 
 ------------------------------------------------------------------------------
 Installation
@@ -25,8 +25,9 @@ Add the line above to your vimrc file to use Unbundle every time you run Vim.
 
 ### Dynamic Bootstrapping Example
 
-If you installed Unbundle at `~/.vim/bundle/vim-unbundle/` then add the
-following line to your vimrc file to dynamically bootstrap your Unbundle:
+If you installed Unbundle to `DOT_VIM_DIR/bundle/vim-unbundle/unbundle.vim`
+where `DOT_VIM_DIR` is the path to your Vim user configuration directory, then
+add the following line to your vimrc file to dynamically bootstrap Unbundle:
 
     execute 'source '. globpath(&runtimepath, 'bundle/vim-unbundle/unbundle.vim')
 
