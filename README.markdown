@@ -30,7 +30,7 @@ If you installed Unbundle to `YOUR_VIM_DIR/bundle/vim-unbundle/unbundle.vim`
 (where `YOUR_VIM_DIR` is the path to your Vim user configuration directory),
 then run the following command inside Vim to dynamically bootstrap Unbundle:
 
-    execute 'source '. globpath(&runtimepath, 'bundle/vim-unbundle/unbundle.vim')
+    execute 'source' fnameescape(globpath(&runtimepath, 'bundle/vim-unbundle/unbundle.vim'))
 
 Add the above line to your vimrc file to dynamically bootstrap Unbundle
 whenever you start Vim.

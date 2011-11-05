@@ -1,7 +1,7 @@
 " create helptags for bundled documentation
 for s:docdir in split(globpath(&runtimepath, 'bundle/*/doc/.'), "\n")
   if filewritable(s:docdir) == 2 && empty(glob(s:docdir . '/tags*'))
-    execute 'helptags '. s:docdir
+    execute 'helptags' fnameescape(s:docdir)
   endif
 endfor
 
