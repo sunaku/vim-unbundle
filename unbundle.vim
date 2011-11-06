@@ -1,16 +1,38 @@
-" create helptags for bundled documentation
-for s:docdir in split(globpath(&runtimepath, 'bundle/*/doc/.'), "\n")
-  if filewritable(s:docdir) == 2 && empty(glob(s:docdir . '/tags*'))
-    execute 'helptags' fnameescape(s:docdir)
-  endif
-endfor
+" Unbundles the directories matched by the given
+" glob, unless they have already been unbundled.
+function Unbundle(glob)
+  " register new bundles from the given glob
+  let l:existing = {}| for l:path in split(&runtimepath, ',')| let l:existing[l:path] = 1| endfor
+  let l:bundles = join(filter(split(globpath(&runtimepath, a:glob . '/.'), "\n"), '!has_key(l:existing, v:val)'), ',')
+  let l:afters = join(filter(split(globpath(l:bundles, 'after/.'), "\n"), '!has_key(l:existing, v:val)'), ',')
+  let &runtimepath = join(filter([l:bundles, &runtimepath, l:afters], '!empty(v:val)'), ',')
 
-" register bundles found in the runtimepath
-let s:bundles = tr(globpath(&runtimepath, 'bundle/*/.'), "\n", ',')
-let s:afters = tr(globpath(s:bundles, 'after/.'), "\n", ',')
-let s:paths = filter([s:bundles, &runtimepath, s:afters], '!empty(v:val)')
-let &runtimepath = join(s:paths, ',')
+  " create missing helptags for documentation
+  for l:path in split(globpath(l:bundles, 'doc/.'), "\n")
+    if filewritable(l:path) == 2 && empty(glob(l:path . '/tags*'))
+      execute 'helptags' fnameescape(l:path)
+    endif
+  endfor
 
-" activate ftplugin/ scripts inside bundles
-filetype off
-filetype plugin indent on
+  " activate ftplugin/ scripts inside bundles
+  filetype off
+  filetype plugin indent on
+
+  " list of newly loaded bundles in path form
+  return l:bundles
+endfunction
+
+" Unbundles all ftbundles associated with the given
+" filetype, unless they have already been unbundled.
+function Unftbundle(type)
+  let l:bundles = Unbundle('ftbundle/' . a:type . '/*')
+  for l:plugin in split(globpath(l:bundles, 'plugin/*.vim'), "\n")
+    execute 'source' fnameescape(l:plugin)
+  endfor
+endfunction
+
+" unbundle bundles up front
+call Unbundle('bundle/*')
+
+" unbundle ftbundles on demand
+autocmd FileType * :call Unftbundle(&filetype)

@@ -1,9 +1,9 @@
 unbundle.vim - Activates [bundles] found in Vim's runtimepath
 =============================================================
 
-Ubundle is a 4-line alternative to [Pathogen]'s bundle registration logic,
-plus a 5-line alternative to [Pathogen]'s bundle helptags generation logic,
-and a 2-line convenience for activation of ftplugins inside your [bundles].
+Ubundle is a short alternative to [Pathogen]'s bundle isolation, registration,
+and helptag facilities.  It also features **ftbundles**: Vim filetype specific
+bundles that are automatically loaded on demand for improved Vim performance.
 
 ------------------------------------------------------------------------------
 Background
@@ -13,6 +13,16 @@ Unbundle looks for directories called `bundle/` in Vim's runtimepath and then
 adds all subdirectories therein back into Vim's runtimepath.  This lets you
 keep your [bundles] isolated in their own directories, instead of having to
 share your Vim user configuration directory communally with your [bundles].
+
+### ftbundles - filetype specific bundles
+
+Unbundle also looks for directories called `ftbundle/` in Vim's runtimepath.
+These directories contain subdirectories whose names reflect Vim filetypes.
+These subdirectories contain bundles that are only loaded when Vim demands it.
+
+For example, if you have 5 bundles that concern the `ruby` filetype, then you
+would place those bundles in `ftbundle/ruby/` to only load them when you edit
+a Ruby file.
 
 ------------------------------------------------------------------------------
 Installation
