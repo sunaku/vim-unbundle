@@ -46,6 +46,17 @@ Add the above line to your vimrc file to dynamically bootstrap Unbundle
 whenever you start Vim.
 
 ------------------------------------------------------------------------------
+Credits
+------------------------------------------------------------------------------
+
+* [Colin Shea](https://github.com/evaryont) is the man behind [the ftbundles
+  idea](https://github.com/sunaku/vim-unbundle/issues/2).
+
+* An [anonymous Alexander suggested](
+  http://snk.tuxfamily.org/log/vim-script-management-system.html#IDComment98711660)
+  appending `/.` to directory globs for portability across operating systems.
+
+------------------------------------------------------------------------------
 License
 ------------------------------------------------------------------------------
 
