@@ -60,7 +60,10 @@ Credits
 License
 ------------------------------------------------------------------------------
 
-Released under the WTFPL license.  See the LICENSE file for details.
+Copyright 2010 Suraj N. Kurapati <sunaku@gmail.com>
+
+Distributed under [the same terms as Vim itself][license].
 
 [Pathogen]: https://github.com/tpope/vim-pathogen
 [bundles]: http://www.vim.org/scripts/
+[license]: http://vimdoc.sourceforge.net/htmldoc/uganda.html#license
