@@ -22,7 +22,7 @@ endfunction
 " filetype, unless they have already been unbundled.
 function Unftbundle(type)
   let l:bundles = Unbundle('ftbundle/' . a:type . '/*')
-  for l:plugin in split(globpath(l:bundles, 'plugin/*.vim'), "\n")
+  for l:plugin in split(globpath(l:bundles, 'plugin/**/*.vim'), "\n")
     execute 'source' fnameescape(l:plugin)
   endfor
 endfunction
