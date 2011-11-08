@@ -32,5 +32,5 @@ call Unbundle('bundle/*')
 
 " unbundle ftbundles on demand
 autocmd FileType * :call Unftbundle(expand('<amatch>'))
-runtime ftbundle/*/*/ftdetect/*.vim
+runtime! ftbundle/*/*/ftdetect/*.vim
 filetype plugin indent on
