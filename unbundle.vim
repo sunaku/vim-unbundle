@@ -13,12 +13,24 @@ function Unbundle(glob)
       execute 'helptags' fnameescape(l:path)
     endif
   endfor
+
+  " list of newly loaded bundles in path form
+  return l:bundles
+endfunction
+
+" Unbundles all ftbundles associated with the given
+" filetype, unless they have already been unbundled.
+function Unftbundle(type)
+  let l:bundles = Unbundle('ftbundle/' . a:type . '/*')
+  for l:plugin in split(globpath(l:bundles, 'plugin/*.vim'), "\n")
+    execute 'source' fnameescape(l:plugin)
+  endfor
 endfunction
 
 " unbundle bundles up front
 call Unbundle('bundle/*')
 
 " unbundle ftbundles on demand
-autocmd FileType * :call Unbundle('ftbundle/' . expand('<amatch>') . '/*')
+autocmd FileType * :call Unftbundle(expand('<amatch>'))
 runtime ftbundle/*/*/ftdetect/*.vim
 filetype plugin indent on
