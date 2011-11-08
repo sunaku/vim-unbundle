@@ -20,7 +20,5 @@ call Unbundle('bundle/*')
 
 " unbundle ftbundles on demand
 autocmd FileType * :call Unbundle('ftbundle/' . expand('<amatch>') . '/*')
-for s:path in split(globpath(&runtimepath, 'ftbundle/*/*/ftdetect/*.vim'), "\n")
-  execute 'source' fnameescape(s:path)
-endfor
+runtime ftbundle/*/*/ftdetect/*.vim
 filetype plugin indent on
