@@ -23,9 +23,15 @@ endfunction
 " filetype, unless they have already been unbundled.
 function Unftbundle(type)
   let l:bundles = Unbundle('ftbundle/' . a:type . '/*')
-  for l:plugin in split(globpath(l:bundles, 'plugin/**/*.vim'), "\n")
-    execute 'source' fnameescape(l:plugin)
-  endfor
+  if !empty(l:bundles)
+    " load ftbundles that were newly added to the runtimepath
+    for l:plugin in split(globpath(l:bundles, 'plugin/**/*.vim'), "\n")
+      execute 'source' fnameescape(l:plugin)
+    endfor
+
+    " apply newly loaded ftbundles to currently open buffers
+    bufdo if &filetype == a:type | doautocmd BufRead | endif
+  endif
 endfunction
 
 " unbundle bundles up front
