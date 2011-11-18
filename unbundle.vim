@@ -1,5 +1,6 @@
-" Unbundles the directories matched by the given
-" glob, unless they have already been unbundled.
+" Unbundles the directories matched by the given glob,
+" unless they have already been unbundled, and returns
+" only those newly unbundled directories in path form.
 function Unbundle(glob)
   " register new bundles from the given glob
   let l:existing = {} | for l:path in split(&runtimepath, ',') | let l:existing[l:path] = 1 | endfor
@@ -14,7 +15,7 @@ function Unbundle(glob)
     endif
   endfor
 
-  " list of newly loaded bundles in path form
+  " newly unbundled directories in path form
   return l:bundles
 endfunction
 
