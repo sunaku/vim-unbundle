@@ -12,7 +12,7 @@ Background
 Unbundle looks for directories called `bundle/` in Vim's runtimepath and then
 adds all subdirectories therein back into Vim's runtimepath.  This lets you
 keep your [bundles] isolated in their own directories, instead of having to
-share your Vim user configuration directory communally with your [bundles].
+share your Vim runtime directory communally with your [bundles].
 
 ### ftbundles - filetype specific bundles
 
@@ -22,28 +22,20 @@ These subdirectories contain bundles that are only loaded when Vim demands it.
 
 For example, if you have 5 bundles that concern the `ruby` filetype, then you
 would place those bundles in `ftbundle/ruby/` to only load them when you edit
-a Ruby file.
+a Ruby file.  This reduces Vim's startup time, especially if your I/O is slow.
 
 ------------------------------------------------------------------------------
 Installation
 ------------------------------------------------------------------------------
 
-To install, place `unbundle.vim` somewhere on your system and then source it:
+1. Clone this Git repository or [download its contents][download] into a new
+   `bundle/vim-unbundle` subdirectory inside your Vim runtime directory.  For
+   example, `~/.vim/bundle/vim-unbundle` would be the corect location in Unix.
 
-    source SOMEWHERE_ON_YOUR_SYSTEM/unbundle.vim
+2. Run the following command inside Vim to start using Unbundle immediately,
+   or add it to your `vimrc` file to start Unbundle whenever you start Vim.
 
-Add the above line to your vimrc file to use Unbundle whenever you start Vim.
-
-### Dynamic Bootstrapping Example
-
-If you installed Unbundle to `YOUR_VIM_DIR/bundle/vim-unbundle/unbundle.vim`
-(where `YOUR_VIM_DIR` is the path to your Vim user configuration directory),
-then run the following command inside Vim to dynamically bootstrap Unbundle:
-
-    runtime bundle/vim-unbundle/unbundle.vim
-
-Add the above line to your vimrc file to dynamically bootstrap Unbundle
-whenever you start Vim.
+        runtime bundle/vim-unbundle/unbundle.vim
 
 ------------------------------------------------------------------------------
 Credits
@@ -51,6 +43,9 @@ Credits
 
 * [Colin Shea](https://github.com/evaryont) is the man behind [the ftbundles
   idea](https://github.com/sunaku/vim-unbundle/issues/2).
+
+* [Peter Aronoff](http://ithaca.arpinum.org) gave feedback and ideas on how to
+  best organize filetypes with dependent ftbundles, such as eRuby templates.
 
 * An [anonymous Alexander suggested](
   http://snk.tuxfamily.org/log/vim-script-management-system.html#IDComment98711660)
@@ -67,3 +62,4 @@ Distributed under [the same terms as Vim itself][license].
 [Pathogen]: https://github.com/tpope/vim-pathogen
 [bundles]: http://www.vim.org/scripts/
 [license]: http://vimdoc.sourceforge.net/htmldoc/uganda.html#license
+[download]: https://github.com/sunaku/vim-unbundle/downloads
