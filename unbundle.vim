@@ -30,7 +30,7 @@ function Unftbundle(type)
     endfor
 
     " apply newly loaded ftbundles to currently open buffers
-    bufdo if &filetype == a:type | doautocmd BufRead | endif
+    doautoall BufRead
   endif
 endfunction
 
