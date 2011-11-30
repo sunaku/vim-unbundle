@@ -1,3 +1,5 @@
+if exists('g:loaded_unbundle') | finish | endif | let g:loaded_unbundle = 1
+
 " Unbundles the directories matched by the given glob,
 " unless they have already been unbundled, and returns
 " only those newly unbundled directories in path form.
