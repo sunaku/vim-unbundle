@@ -35,9 +35,14 @@ function! Unftbundle(type)
 endfunction
 
 " unbundle bundles up front
+" FIXME add this to vimrc file
 call Unbundle('bundle/*')
 
 " unbundle ftbundles on demand
-autocmd FileType * :call Unftbundle(expand('<amatch>'))
+augroup unbundle
+	au!
+    autocmd FileType * :call Unftbundle(expand('<amatch>'))
+augroup END
+
 runtime! ftbundle/*/*/ftdetect/*.vim
 filetype plugin indent on
