@@ -27,7 +27,7 @@ function Unftbundle(type)
   let l:bundles = Unbundle('ftbundle/' . a:type . '/*')
   if !empty(l:bundles)
     " load ftbundles that were newly added to the runtimepath
-    for l:plugin in split(globpath(l:bundles, 'plugin/**/*.vim'), "\n")
+    for l:plugin in filter(split(globpath(l:bundles, 'plugin/**/*.vim'), "\n"), '!isdirectory(v:val)')
       execute 'source' fnameescape(l:plugin)
     endfor
 
