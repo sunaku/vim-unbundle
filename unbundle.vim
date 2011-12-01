@@ -1,9 +1,7 @@
-if exists('g:loaded_unbundle') | finish | endif | let g:loaded_unbundle = 1
-
 " Unbundles the directories matched by the given glob,
 " unless they have already been unbundled, and returns
 " only those newly unbundled directories in path form.
-function Unbundle(glob)
+function! Unbundle(glob)
   " register new bundles from the given glob
   let l:existing = {} | for l:path in split(&runtimepath, ',') | let l:existing[l:path] = 1 | endfor
   let l:bundles = join(filter(split(globpath(&runtimepath, a:glob . '/.'), "\n"), '!has_key(l:existing, v:val)'), ',')
@@ -23,7 +21,7 @@ endfunction
 
 " Unbundles all ftbundles associated with the given
 " filetype, unless they have already been unbundled.
-function Unftbundle(type)
+function! Unftbundle(type)
   let l:bundles = Unbundle('ftbundle/' . a:type . '/*')
   if !empty(l:bundles)
     " load ftbundles that were newly added to the runtimepath
