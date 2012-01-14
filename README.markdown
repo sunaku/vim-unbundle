@@ -38,6 +38,31 @@ Installation
         runtime bundle/vim-unbundle/unbundle.vim
 
 ------------------------------------------------------------------------------
+Invocation
+------------------------------------------------------------------------------
+
+When it is sourced, `unbundle.vim` automatically unbundles found bundles and
+registers an auto-command to dynamically unbundle ftbundles as you need them.
+
+You can *manually* invoke parts of this default behavior via these commands:
+
+* `:Unbundle` - load newly found bundles (this does *not* process ftbundles!)
+* `:Unftbundle <filetype>` - load newly found ftbundles for the given filetype
+
+Alternatively, you can directly invoke their underlying Vim script functions:
+
+* `:call Unbundle(glob)`
+
+  > Unbundles the directories matched by the given glob,
+  > unless they have already been unbundled, and returns
+  > only those newly unbundled directories in path form.
+
+* `:call Unftbundle(type)`
+
+  > Unbundles all ftbundles associated with the given
+  > filetype, unless they have already been unbundled.
+
+------------------------------------------------------------------------------
 Credits
 ------------------------------------------------------------------------------
 

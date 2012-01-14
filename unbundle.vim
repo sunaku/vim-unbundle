@@ -34,10 +34,14 @@ function! Unftbundle(type)
   endif
 endfunction
 
-" unbundle bundles up front
-call Unbundle('bundle/*')
+" commands for manual invocation
+command! Unbundle call Unbundle('bundle/*')
+command! -nargs=1 -complete=filetype Unftbundle call Unftbundle(<f-args>)
 
 " unbundle ftbundles on demand
 autocmd FileType * :call Unftbundle(expand('<amatch>'))
 runtime! ftbundle/*/*/ftdetect/*.vim
 filetype plugin indent on
+
+" unbundle bundles up front
+Unbundle
