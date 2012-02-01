@@ -46,23 +46,26 @@ registers an auto-command to dynamically unbundle ftbundles as you need them.
 
 You can *manually* invoke parts of this default behavior via these commands:
 
-* `:Unbundle` - load newly found bundles (this does *not* process ftbundles!)
-* `:Unftbundle <filetypes>` - load newly found bundles for the given filetypes
+* `:Unbundle` loads newly found bundles (this does *not* process ftbundles!)
+
+* `:Unftbundle <filetype>`
+  unbundles all ftbundles associated with the given filetype, unless they
+  have already been unbundled.  Multiple filetypes can be specified in the
+  form of a glob.  For example, to unbundle 'html', 'css', and 'javascript'
+  ftbundles, you would pass `{html,css,javascript}` to this command.
 
 Alternatively, you can directly invoke their underlying Vim script functions:
 
 * `:call Unbundle(glob)`
-
-  > Unbundles the directories matched by the given glob,
-  > unless they have already been unbundled, and returns
-  > only those newly unbundled directories in path form.
+  unbundles the directories matched by the given glob,
+  unless they have already been unbundled, and returns
+  only those newly unbundled directories in path form.
 
 * `:call Unftbundle(type)`
-
-  > Unbundles all ftbundles associated with the given filetype, unless they
-  > have already been unbundled.  Multiple filetypes can be specified in the
-  > form of a glob.  For example, to unbundle 'html', 'css', and 'javascript'
-  > ftbundles, you would pass '{html,css,javascript}' into this function.
+  unbundles all ftbundles associated with the given filetype, unless they
+  have already been unbundled.  Multiple filetypes can be specified in the
+  form of a glob.  For example, to unbundle 'html', 'css', and 'javascript'
+  ftbundles, you would pass `'{html,css,javascript}'` to this function.
 
 ------------------------------------------------------------------------------
 Credits
