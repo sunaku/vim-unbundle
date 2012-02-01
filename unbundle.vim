@@ -19,8 +19,10 @@ function! Unbundle(glob)
   return l:bundles
 endfunction
 
-" Unbundles all ftbundles associated with the given
-" filetype, unless they have already been unbundled.
+" Unbundles all ftbundles associated with the given filetype, unless they
+" have already been unbundled.  Multiple filetypes can be specified in the
+" form of a glob.  For example, to unbundle 'html', 'css', and 'javascript'
+" ftbundles, you would pass '{html,css,javascript}' into this function.
 function! Unftbundle(type)
   let l:bundles = Unbundle('ftbundle/' . a:type . '/*')
   if !empty(l:bundles)

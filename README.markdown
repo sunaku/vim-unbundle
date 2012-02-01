@@ -47,7 +47,7 @@ registers an auto-command to dynamically unbundle ftbundles as you need them.
 You can *manually* invoke parts of this default behavior via these commands:
 
 * `:Unbundle` - load newly found bundles (this does *not* process ftbundles!)
-* `:Unftbundle <filetype>` - load newly found ftbundles for the given filetype
+* `:Unftbundle <filetypes>` - load newly found bundles for the given filetypes
 
 Alternatively, you can directly invoke their underlying Vim script functions:
 
@@ -59,8 +59,10 @@ Alternatively, you can directly invoke their underlying Vim script functions:
 
 * `:call Unftbundle(type)`
 
-  > Unbundles all ftbundles associated with the given
-  > filetype, unless they have already been unbundled.
+  > Unbundles all ftbundles associated with the given filetype, unless they
+  > have already been unbundled.  Multiple filetypes can be specified in the
+  > form of a glob.  For example, to unbundle 'html', 'css', and 'javascript'
+  > ftbundles, you would pass '{html,css,javascript}' into this function.
 
 ------------------------------------------------------------------------------
 Credits
