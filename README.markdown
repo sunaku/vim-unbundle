@@ -1,13 +1,10 @@
-unbundle.vim - Activates [bundles] found in Vim's runtimepath
-=============================================================
+# Unbundle - activates [Vim bundles][bundles]
 
 Ubundle is a short alternative to [Pathogen]'s bundle isolation, registration,
 and helptag facilities.  It also features **ftbundles**: Vim filetype specific
 bundles that are automatically loaded on demand for improved Vim performance.
 
-------------------------------------------------------------------------------
-Background
-------------------------------------------------------------------------------
+## Background
 
 Unbundle looks for directories called `bundle/` in Vim's runtimepath and then
 adds all subdirectories therein back into Vim's runtimepath.  This lets you
@@ -24,9 +21,7 @@ For example, if you have 5 bundles that concern the `ruby` filetype, then you
 would place those bundles in `ftbundle/ruby/` to only load them when you edit
 a Ruby file.  This reduces Vim's startup time, especially if your I/O is slow.
 
-------------------------------------------------------------------------------
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 1. Clone this Git repository or [download its contents][download] into a new
    `bundle/vim-unbundle` subdirectory inside your Vim runtime directory.  For
@@ -37,9 +32,7 @@ Installation
 
         runtime bundle/vim-unbundle/unbundle.vim
 
-------------------------------------------------------------------------------
-Invocation
-------------------------------------------------------------------------------
+## Invocation
 
 When it is sourced, `unbundle.vim` automatically unbundles found bundles and
 registers an auto-command to dynamically unbundle ftbundles as you need them.
@@ -67,9 +60,7 @@ Alternatively, you can directly invoke their underlying Vim script functions:
   form of a glob.  For example, to unbundle 'html', 'css', and 'javascript'
   ftbundles, you would pass `'{html,css,javascript}'` to this function.
 
-------------------------------------------------------------------------------
-Credits
-------------------------------------------------------------------------------
+## Credits
 
 * [Colin Shea](https://github.com/evaryont) is the man behind [the ftbundles
   idea](https://github.com/sunaku/vim-unbundle/issues/2).
@@ -81,9 +72,7 @@ Credits
   http://snk.tuxfamily.org/log/vim-script-management-system.html#IDComment98711660)
   appending `/.` to directory globs for portability across operating systems.
 
-------------------------------------------------------------------------------
-License
-------------------------------------------------------------------------------
+## License
 
 Copyright 2010 Suraj N. Kurapati <sunaku@gmail.com>
 
