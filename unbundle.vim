@@ -38,7 +38,7 @@ endfunction
 
 " commands for manual invocation
 command! Unbundle call Unbundle('bundle/*')
-command! -nargs=1 -complete=filetype Unftbundle call Unftbundle(<f-args>)
+command! -nargs=1 Unftbundle call Unftbundle(<f-args>)
 
 " unbundle ftbundles on demand
 autocmd FileType * :call Unftbundle(expand('<amatch>'))
