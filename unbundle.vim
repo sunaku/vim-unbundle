@@ -44,6 +44,9 @@ command! -nargs=1 -complete=filetype Unftbundle call Unftbundle(<f-args>)
 Unbundle
 
 " unbundle ftbundles on demand
-autocmd FileType * :call Unftbundle(expand('<amatch>'))
+augroup Unftbundle
+  autocmd!
+  autocmd FileType * call Unftbundle(expand('<amatch>'))
+augroup END
 runtime! ftbundle/*/*/ftdetect/*.vim
 filetype plugin indent on
