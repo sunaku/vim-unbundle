@@ -1,0 +1,48 @@
+*unbundle.vim*  Activates Vim scripts (bundles) from isolated directories.
+
+Author:   Suraj N. Kurapati <sunaku@gmail.com>
+License:  Same terms as Vim itself (see |license|)
+Homepage: https://github.com/sunaku/vim-unbundle
+
+------------------------------------------------------------------------------
+INTRODUCTION                                                    *unbundle-intro*
+------------------------------------------------------------------------------
+
+Unbundle activates your |bundles| and |ftbundles| by adding them to Vim's
+'runtimepath' and building missing |:helptags| for documentation therein.
+
+*bundles* are Vim scripts that are stored in isolated directories under
+`bundle/` subdirectories of directories specified in Vim's 'runtimepath'.  For
+example, `~/.vim/bundle/*/` would be your |bundles| if you were using |Unix|.
+
+*ftbundles* are |filetype|-specific |bundles| that are loaded lazily (only
+when they are necessary) to shorten Vim's |startup| time.  For example,
+`~/.vim/ftbundle/{filetype}/*/` would be your |ftbundles| for {filetype} if
+you were using |Unix|.
+
+------------------------------------------------------------------------------
+INVOCATION                                                      *unbundle-usage*
+------------------------------------------------------------------------------
+
+When it is sourced, |unbundle.vim| activates all of your |bundles| and also
+registers an |autocommand| to activate your |ftbundles| only when necessary.
+You can selectively invoke parts of this behavior using these commands:
+
+:Unbundle                                                            *:Unbundle*
+		Activates ``|bundles| that haven't already been activated by
+		passing the `'bundle/*'` glob to the |Unbundle()| function.
+
+Unbundle({glob})                                                    *Unbundle()*
+		Unbundles the directories matched by the given {glob}, unless
+		they have already been unbundled, and returns only those newly
+		unbundled directories in 'path' form.
+
+Unftbundle({filetype})                                            *Unftbundle()*
+:Unftbundle {filetype}                                             *:Unftbundle*
+		Unbundles all |ftbundles| associated with the given {filetype},
+		unless they have already been unbundled.  Multiple |filetype|s
+		can be specified in the form of a glob.  For example, to
+		unbundle `'html'`, `'css'`, and `'javascript'` |ftbundles|, you
+		would pass `{html,css,javascript}` to this command.
+
+ vim:tw=78:ts=8:ft=help:norl:
