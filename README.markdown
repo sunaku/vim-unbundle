@@ -1,69 +1,42 @@
-# Unbundle - activates [Vim bundles][bundles]
+# unbundle.vim
 
-Ubundle is a short alternative to [Pathogen]'s bundle isolation, registration,
-and helptag facilities.  It also features **ftbundles**: Vim filetype specific
-bundles that are automatically loaded on demand for improved Vim performance.
+Unbundle activates [Vim scripts] from isolated directories by adding them to
+Vim's *runtimepath* and building missing *helptags* for documentation therein.
+For the initiated, it's like [pathogen.vim] but with *ftbundles* and less code.
 
-## Background
+## Terminology
 
-Unbundle looks for directories called `bundle/` in Vim's runtimepath and then
-adds all subdirectories therein back into Vim's runtimepath.  This lets you
-keep your [bundles] isolated in their own directories, instead of having to
-share your Vim runtime directory communally with your [bundles].
+**bundles** are [Vim scripts] that are stored in isolated directories under
+`bundle/` subdirectories of directories specified in Vim's *runtimepath*.  For
+example, `~/.vim/bundle/*/` would be your *bundles* if you were using Unix.
 
-### ftbundles - filetype specific bundles
-
-Unbundle also looks for directories called `ftbundle/` in Vim's runtimepath.
-These directories contain subdirectories whose names reflect Vim filetypes.
-These subdirectories contain bundles that are only loaded when Vim demands it.
-
-For example, if you have 5 bundles that concern the `ruby` filetype, then you
-would place those bundles in `ftbundle/ruby/` to only load them when you edit
-a Ruby file.  This reduces Vim's startup time, especially if your I/O is slow.
+**ftbundles** are *filetype*-specific *bundles* that are loaded lazily (only
+when they are necessary) to shorten Vim's startup time.  For example,
+`~/.vim/ftbundle/{filetype}/*/` would be your *ftbundles* for `{filetype}` if
+you were using Unix.
 
 ## Installation
 
-1. Clone this Git repository or [download its contents][download] into a new
+1. Clone this Git repository or [download its contents][downloads] into a new
    `bundle/vim-unbundle` subdirectory inside your Vim runtime directory.  For
    example, `~/.vim/bundle/vim-unbundle` would be the corect location in Unix.
 
+        cd ~/.vim/bundle/
+        git clone git://github.com/sunaku/vim-unbundle.git
+
 2. Run the following command inside Vim to start using Unbundle immediately,
-   or add it to your `vimrc` file to start Unbundle whenever you start Vim.
+   or add it to your *vimrc* file to start Unbundle whenever you start Vim.
 
-        runtime bundle/vim-unbundle/unbundle.vim
+        :runtime bundle/vim-unbundle/unbundle.vim
 
-## Invocation
+3. Run the following command inside Vim to learn more about using Unbundle.
 
-When it is sourced, `unbundle.vim` automatically unbundles found bundles and
-registers an auto-command to dynamically unbundle ftbundles as you need them.
-
-You can *manually* invoke parts of this default behavior via these commands:
-
-* `:Unbundle` loads newly found bundles (this does *not* process ftbundles!)
-
-* `:Unftbundle <filetype>`
-  unbundles all ftbundles associated with the given filetype, unless they
-  have already been unbundled.  Multiple filetypes can be specified in the
-  form of a glob.  For example, to unbundle 'html', 'css', and 'javascript'
-  ftbundles, you would pass `{html,css,javascript}` to this command.
-
-Alternatively, you can directly invoke their underlying Vim script functions:
-
-* `:call Unbundle(glob)`
-  unbundles the directories matched by the given glob,
-  unless they have already been unbundled, and returns
-  only those newly unbundled directories in path form.
-
-* `:call Unftbundle(type)`
-  unbundles all ftbundles associated with the given filetype, unless they
-  have already been unbundled.  Multiple filetypes can be specified in the
-  form of a glob.  For example, to unbundle 'html', 'css', and 'javascript'
-  ftbundles, you would pass `'{html,css,javascript}'` to this function.
+        :help unbundle.vim
 
 ## Credits
 
-* [Colin Shea](https://github.com/evaryont) is the man behind [the ftbundles
-  idea](https://github.com/sunaku/vim-unbundle/issues/2).
+* [Colin Shea](https://github.com/evaryont) came up with [the idea of
+  *ftbundles*](https://github.com/sunaku/vim-unbundle/issues/2).
 
 * [Peter Aronoff](http://ithaca.arpinum.org) gave feedback and ideas on how to
   best organize filetypes with dependent ftbundles, such as eRuby templates.
@@ -78,7 +51,7 @@ Copyright 2010 Suraj N. Kurapati <sunaku@gmail.com>
 
 Distributed under [the same terms as Vim itself][license].
 
-[Pathogen]: https://github.com/tpope/vim-pathogen
-[bundles]: http://www.vim.org/scripts/
+[Vim scripts]: http://www.vim.org/scripts/
 [license]: http://vimdoc.sourceforge.net/htmldoc/uganda.html#license
-[download]: https://github.com/sunaku/vim-unbundle/downloads
+[downloads]: https://github.com/sunaku/vim-unbundle/downloads
+[pathogen.vim]: https://github.com/tpope/vim-pathogen#readme
