@@ -32,7 +32,7 @@ function! Unftbundle(type)
     endfor
 
     " apply newly loaded ftbundles to currently open buffers
-    doautoall BufRead
+    doautoall BufRead,FileType
   endif
 endfunction
 
