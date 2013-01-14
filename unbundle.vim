@@ -31,10 +31,26 @@ function! Unftbundle(type)
       execute 'source' fnameescape(l:plugin)
     endfor
 
+    " reload autocmd FileType when filetype already loaded
+    if s:filetype_loaded == 1
+      let &l:filetype = &l:filetype
+    endif
+
     " apply newly loaded ftbundles to currently open buffers
-    doautoall BufRead,FileType
+    doautoall BufRead
   endif
 endfunction
+
+" If `filetype plugin indent on` already set before unbundle.vim load
+" unbundle.vim need to reload filetype
+redir => filetype_out
+  silent! filetype
+redir END
+
+let s:filetype_loaded = 0
+if filetype_out =~# 'plugin:ON\|plugin:(on)'
+  let s:filetype_loaded = 1
+endif
 
 " commands for manual invocation
 command! Unbundle call Unbundle('bundle/*')
