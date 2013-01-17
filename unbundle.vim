@@ -44,6 +44,7 @@ command! -nargs=1 -complete=filetype Unftbundle call Unftbundle(<f-args>)
 Unbundle
 
 " unbundle ftbundles on demand
+filetype plugin indent off
 augroup Unftbundle
   autocmd!
   autocmd FileType * call Unftbundle(expand('<amatch>'))

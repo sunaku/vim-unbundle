@@ -38,6 +38,10 @@ you were using Unix.
 * [Colin Shea](https://github.com/evaryont) came up with [the idea of
   *ftbundles*](https://github.com/sunaku/vim-unbundle/issues/2).
 
+* [heavenshell](https://github.com/heavenshell) added [compatibility](
+  https://github.com/sunaku/vim-unbundle/pull/7) with the Japanese
+  [Vim-Kaoriya](http://www.kaoriya.net/software/vim) distribution.
+
 * [Peter Aronoff](http://ithaca.arpinum.org) gave feedback and ideas on how to
   best organize filetypes with dependent ftbundles, such as eRuby templates.
 
