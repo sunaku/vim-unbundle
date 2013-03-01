@@ -1,6 +1,5 @@
-" Unbundles the directories matched by the given glob,
-" unless they have already been unbundled, and returns
-" only those newly unbundled directories in path form.
+" Unbundles directories matched by the given glob, unless they
+" have already been unbundled, and returns them in path form.
 function! Unbundle(glob)
   " register new bundles from the given glob
   let l:existing = {} | for l:path in split(&runtimepath, ',') | let l:existing[l:path] = 1 | endfor
@@ -15,25 +14,28 @@ function! Unbundle(glob)
     endif
   endfor
 
-  " newly unbundled directories in path form
-  return l:bundles
-endfunction
-
-" Unbundles all ftbundles associated with the given filetype, unless they
-" have already been unbundled.  Multiple filetypes can be specified in the
-" form of a glob.  For example, to unbundle 'html', 'css', and 'javascript'
-" ftbundles, you would pass '{html,css,javascript}' into this function.
-function! Unftbundle(type)
-  let l:bundles = Unbundle('ftbundle/' . a:type . '/*')
-  if !empty(l:bundles)
-    " load ftbundles that were newly added to the runtimepath
+  " If Vim already finished starting up, then it will *not* automatically
+  " load any bundles registered thereafter.  So we must load them by hand!
+  if !empty(l:bundles) && !has('vim_starting')
+    " load bundles that were newly added to the runtimepath
     for l:plugin in filter(split(globpath(l:bundles, 'plugin/**/*.vim'), "\n"), '!isdirectory(v:val)')
       execute 'source' fnameescape(l:plugin)
     endfor
 
-    " apply newly loaded ftbundles to currently open buffers
+    " apply newly loaded bundles to currently open buffers
     doautoall BufRead
   endif
+
+  " newly unbundled directories in path form
+  return l:bundles
+endfunction
+
+" Unbundles directories associated with the given filetype, unless they have
+" already been unbundled, and returns them in path form.  Multiple filetypes
+" can be specified as a glob.  For example, to unbundle 'html', 'css', and
+" 'javascript' ftbundles, pass '{html,css,javascript}' into this function.
+function! Unftbundle(type)
+  return Unbundle('ftbundle/' . a:type . '/*')
 endfunction
 
 " commands for manual invocation
