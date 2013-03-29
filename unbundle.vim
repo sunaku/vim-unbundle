@@ -16,8 +16,9 @@ function! Unbundle(glob)
 
   " If Vim already finished starting up, then it will *not* automatically
   " load any bundles registered thereafter.  So we must load them by hand!
-  if !empty(l:bundles) && !has('vim_starting')
-    " load bundles that were newly added to the runtimepath
+  " This must also be done whenever we're unbundling newly found ftbundles.
+  if !empty(l:bundles) && (!has('vim_starting') || expand('<sfile>') =~ '\<Unftbundle\.\.Unbundle$')
+    " emulate Vim's unpacking of the newly loaded bundles
     for l:plugin in filter(split(globpath(l:bundles, 'plugin/**/*.vim'), "\n"), '!isdirectory(v:val)')
       execute 'source' fnameescape(l:plugin)
     endfor
