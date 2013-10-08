@@ -57,5 +57,5 @@ Distributed under [the same terms as Vim itself][license].
 
 [Vim scripts]: http://www.vim.org/scripts/
 [license]: http://vimdoc.sourceforge.net/htmldoc/uganda.html#license
-[downloads]: https://github.com/sunaku/vim-unbundle/downloads
+[downloads]: https://github.com/sunaku/vim-unbundle/archive/master.zip
 [pathogen.vim]: https://github.com/tpope/vim-pathogen#readme
