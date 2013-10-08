@@ -1,6 +1,6 @@
 # unbundle.vim
 
-Unbundle activates [Vim scripts] from isolated directories by adding them to
+[Unbundle] activates [Vim scripts] from isolated directories by adding them to
 Vim's *runtimepath* and building missing *helptags* for documentation therein.
 For the initiated, it's like [pathogen.vim] but with *ftbundles* and less code.
 
@@ -23,7 +23,7 @@ you were using Unix.
 
 1. Clone this Git repository or [download its contents][downloads] into a new
    `bundle/vim-unbundle` subdirectory inside your Vim runtime directory.  For
-   example, `~/.vim/bundle/vim-unbundle` would be the corect location in Unix.
+   example, `~/.vim/bundle/vim-unbundle` would be the correct location in Unix.
 
         cd ~/.vim/bundle/
         git clone git://github.com/sunaku/vim-unbundle.git
@@ -59,7 +59,8 @@ Copyright 2010 Suraj N. Kurapati <sunaku@gmail.com>
 
 Distributed under [the same terms as Vim itself][license].
 
-[Vim scripts]: http://www.vim.org/scripts/
-[license]: http://vimdoc.sourceforge.net/htmldoc/uganda.html#license
-[downloads]: https://github.com/sunaku/vim-unbundle/archive/master.zip
+[Unbundle]:     https://github.com/sunaku/vim-unbundle
+[downloads]:    https://github.com/sunaku/vim-unbundle/archive/master.zip
+[license]:      http://vimdoc.sourceforge.net/htmldoc/uganda.html#license
 [pathogen.vim]: https://github.com/tpope/vim-pathogen#readme
+[Vim scripts]:  http://www.vim.org/scripts/
