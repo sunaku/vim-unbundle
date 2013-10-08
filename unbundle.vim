@@ -41,7 +41,7 @@ endfunction
 
 " commands for manual invocation
 command! Unbundle call Unbundle('bundle/*')
-command! -nargs=1 -complete=filetype Unftbundle call Unftbundle(<f-args>)
+execute 'command! -nargs=1' (v:version >= 703 ? '-complete=filetype' : '') 'Unftbundle call Unftbundle(<f-args>)'
 
 " unbundle bundles up front
 Unbundle
