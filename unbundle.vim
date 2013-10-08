@@ -1,3 +1,8 @@
+if v:version < 700
+  echoerr 'Unbundle requires Vim 7 or newer.'
+  finish
+endif
+
 " Unbundles directories matched by the given glob, unless they
 " have already been unbundled, and returns them in path form.
 function! Unbundle(glob)

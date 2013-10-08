@@ -15,6 +15,10 @@ when they are necessary) to shorten Vim's startup time.  For example,
 `~/.vim/ftbundle/{filetype}/*/` would be your *ftbundles* for `{filetype}` if
 you were using Unix.
 
+## Requirements
+
+* Vim 7 or newer.
+
 ## Installation
 
 1. Clone this Git repository or [download its contents][downloads] into a new
