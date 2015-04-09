@@ -3,6 +3,14 @@ if v:version < 700
   finish
 endif
 
+if !exists('g:unbundle_bundles_glob')
+  let g:unbundle_bundles_glob = 'bundle/*'
+endif
+
+if !exists('g:unbundle_ftbundles_glob')
+  let g:unbundle_ftbundles_glob = 'ftbundle/{filetype}/*'
+endif
+
 " Unbundles directories matched by the given glob, unless they
 " have already been unbundled, and returns them in path form.
 function! Unbundle(glob)
@@ -41,11 +49,11 @@ endfunction
 " can be specified as a glob.  For example, to unbundle 'html', 'css', and
 " 'javascript' ftbundles, pass '{html,css,javascript}' into this function.
 function! Unftbundle(type)
-  return Unbundle('ftbundle/' . a:type . '/*')
+  return Unbundle(substitute(g:unbundle_ftbundles_glob, '{filetype}', a:type, 'g'))
 endfunction
 
 " commands for manual invocation
-command! Unbundle call Unbundle('bundle/*')
+command! Unbundle call Unbundle(g:unbundle_bundles_glob)
 execute 'command! -nargs=1' (v:version >= 703 ? '-complete=filetype' : '') 'Unftbundle call Unftbundle(<f-args>)'
 
 " unbundle bundles up front
@@ -57,5 +65,5 @@ augroup Unftbundle
   autocmd!
   autocmd FileType * call Unftbundle(expand('<amatch>'))
 augroup END
-runtime! ftbundle/*/*/ftdetect/*.vim
+execute 'runtime!' substitute(g:unbundle_ftbundles_glob, '{filetype}', '*', 'g') . '/ftdetect/*.vim'
 filetype plugin indent on

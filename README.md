@@ -6,14 +6,17 @@ For the initiated, it's like [pathogen.vim] but with *ftbundles* and less code.
 
 ## Terminology
 
-**bundles** are [Vim scripts] that are stored in isolated directories under
-`bundle/` subdirectories of directories specified in Vim's *runtimepath*.  For
-example, `~/.vim/bundle/*/` would be your *bundles* if you were using Unix.
+**bundles** are [Vim scripts] that are stored in isolated `bundle/*/` directories
+(by default; but this is configurable via `g:unbundle_bundles_glob`) found
+within Vim's *runtimepath* array.  For example, `~/.vim/bundle/*/` would be
+your *bundles* by default if you were using Unix.
 
-**ftbundles** are *filetype*-specific *bundles* that are loaded lazily (only
-when they are necessary) to shorten Vim's startup time.  For example,
-`~/.vim/ftbundle/{filetype}/*/` would be your *ftbundles* for `{filetype}` if
-you were using Unix.
+**ftbundles** are *filetype*-specific *bundles* that are loaded lazily, as and
+when they are necessary, to shorten Vim's startup time.  Similar to
+*bundles*, they are stored in isolated `ftbundle/{filetype}/*/` directories
+(by default; but this is configurable via `g:unbundle_ftbundles_glob`) found
+within Vim's *runtimepath* array. For example, `~/.vim/ftbundle/{filetype}/*/`
+would be your *ftbundles* for `{filetype}` by default if you were using Unix.
 
 ## Requirements
 
