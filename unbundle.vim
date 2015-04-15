@@ -27,10 +27,10 @@ function! Unbundle(glob)
     endif
   endfor
 
-  " If Vim already finished starting up, then it will *not* automatically
-  " load any bundles registered thereafter.  So we must load them by hand!
+  " Vim will not automatically load any bundles registered after it began
+  " or finished starting up.  As a result, we must do the loading by hand!
   " This must also be done whenever we're unbundling newly found ftbundles.
-  if !empty(l:bundles) && (!has('vim_starting') || expand('<sfile>') =~ '\<Unftbundle\.\.Unbundle$')
+  if !empty(l:bundles)
     " emulate Vim's unpacking of the newly loaded bundles
     for l:plugin in filter(split(globpath(l:bundles, 'plugin/**/*.vim'), "\n"), '!isdirectory(v:val)')
       execute 'source' fnameescape(l:plugin)
