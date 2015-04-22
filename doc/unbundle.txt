@@ -60,6 +60,11 @@ Unbundle({glob})                                                    *Unbundle()*
 		Unbundles directories matched by the given {glob}, unless they
 		have already been unbundled, and returns them in 'path' form.
 
+		Any `*.vim` files that have the same basename as directories
+		matched by the given {glob} will be |source|d before their
+		corresponding directories are unbundled.  This allows such
+		`*.vim` files to configure bundles before they are unbundled.
+
 :Unftbundle {filetype}                                             *:Unftbundle*
 Unftbundle({filetype})                                            *Unftbundle()*
 		Unbundles directories associated with the given {filetype},

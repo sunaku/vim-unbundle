@@ -13,6 +13,11 @@ endif
 
 " Unbundles directories matched by the given glob, unless they
 " have already been unbundled, and returns them in path form.
+"
+" Any *.vim files that have the same basename as directories
+" matched by the given glob will be sourced before their
+" corresponding directories are unbundled.  This allows such
+" *.vim files to configure bundles before they are unbundled.
 function! Unbundle(glob)
   " register new bundles from the given glob
   let l:existing = {} | for l:path in split(&runtimepath, ',') | let l:existing[l:path] = 1 | endfor
@@ -31,9 +36,12 @@ function! Unbundle(glob)
   " or finished starting up.  As a result, we must do the loading by hand!
   " This must also be done whenever we're unbundling newly found ftbundles.
   if !empty(l:bundles)
-    " emulate Vim's unpacking of the newly loaded bundles
-    for l:plugin in filter(split(globpath(l:bundles, 'plugin/**/*.vim'), "\n"), '!isdirectory(v:val)')
-      execute 'source' fnameescape(l:plugin)
+    " configure bundles by loading {bundle_name}.vim files and
+    " then emulate Vim's unpacking of the newly loaded bundles
+    let l:configs = map(split(l:bundles, ','), 'substitute(v:val, "/.$", ".vim", "")')
+    let l:plugins = split(globpath(l:bundles, 'plugin/**/*.vim'), "\n")
+    for l:source in filter(l:configs + l:plugins, 'filereadable(v:val)')
+      execute 'source' fnameescape(l:source)
     endfor
 
     " apply newly loaded bundles to currently open buffers
