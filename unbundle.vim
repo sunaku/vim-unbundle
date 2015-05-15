@@ -20,31 +20,28 @@ endif
 " *.vim files to configure bundles before they are unbundled.
 function! Unbundle(glob)
   " register new bundles from the given glob
-  let l:existing = {} | for l:path in split(&runtimepath, ',') | let l:existing[l:path] = 1 | endfor
+  let l:existing = {} | for l:folder in split(&runtimepath, ',') | let l:existing[l:folder] = 1 | endfor
   let l:bundles = join(filter(split(globpath(&runtimepath, a:glob . '/.'), "\n"), '!has_key(l:existing, v:val)'), ',')
-  let l:afters = join(filter(split(globpath(l:bundles, 'after/.'), "\n"), '!has_key(l:existing, v:val)'), ',')
-  let &runtimepath = join(filter([l:bundles, &runtimepath, l:afters], '!empty(v:val)'), ',')
-
-  " create missing helptags for documentation
-  for l:path in split(globpath(l:bundles, 'doc/.'), "\n")
-    if filewritable(l:path) == 2 && empty(glob(l:path . '/tags*'))
-      execute 'helptags' fnameescape(l:path)
-    endif
-  endfor
-
-  " Vim will not automatically load any bundles registered after it began
-  " or finished starting up.  As a result, we must do the loading by hand!
-  " This must also be done whenever we're unbundling newly found ftbundles.
   if !empty(l:bundles)
+    let l:afters = join(filter(split(globpath(l:bundles, 'after/.'), "\n"), '!has_key(l:existing, v:val)'), ',')
+    let &runtimepath = join(filter([l:bundles, &runtimepath, l:afters], '!empty(v:val)'), ',')
+
+    " create missing helptags for documentation inside bundles
+    for l:folder in split(globpath(l:bundles, 'doc/.'), "\n")
+      if filewritable(l:folder) == 2 && empty(glob(l:folder . '/tags*'))
+        execute 'helptags' fnameescape(l:folder)
+      endif
+    endfor
+
     " configure bundles by loading {bundle_name}.vim files and
     " then emulate Vim's unpacking of the newly loaded bundles
     let l:configs = map(split(l:bundles, ','), 'substitute(v:val, "/.$", ".vim", "")')
     let l:plugins = split(globpath(l:bundles . ',' . l:afters, 'plugin/**/*.vim'), "\n")
-    for l:source in filter(l:configs + l:plugins, 'filereadable(v:val)')
-      execute 'source' fnameescape(l:source)
+    for l:file in filter(l:configs + l:plugins, 'filereadable(v:val)')
+      execute 'source' fnameescape(l:file)
     endfor
 
-    " apply newly loaded bundles to currently open buffers
+    " apply newly loaded bundles to all currently open buffers
     doautoall BufRead
   endif
 
