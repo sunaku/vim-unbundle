@@ -39,7 +39,7 @@ function! Unbundle(glob)
     " configure bundles by loading {bundle_name}.vim files and
     " then emulate Vim's unpacking of the newly loaded bundles
     let l:configs = map(split(l:bundles, ','), 'substitute(v:val, "/.$", ".vim", "")')
-    let l:plugins = split(globpath(l:bundles, 'plugin/**/*.vim'), "\n")
+    let l:plugins = split(globpath(l:bundles . ',' . l:afters, 'plugin/**/*.vim'), "\n")
     for l:source in filter(l:configs + l:plugins, 'filereadable(v:val)')
       execute 'source' fnameescape(l:source)
     endfor
