@@ -25,16 +25,15 @@ would be your *ftbundles* for `{filetype}` by default if you were using Unix.
 ## Installation
 
 1. Clone this Git repository or [download its contents][downloads] into a new
-   `bundle/vim-unbundle` subdirectory inside your Vim runtime directory.  For
-   example, `~/.vim/bundle/vim-unbundle` would be the correct location in Unix.
+   `vim-unbundle` subdirectory inside your Vim runtime directory.  For
+   example, `~/.vim/vim-unbundle` would be the correct location in Unix.
 
-        cd ~/.vim/bundle/
-        git clone git://github.com/sunaku/vim-unbundle.git
+        git clone https://github.com/sunaku/vim-unbundle.git ~/.vim/vim-unbundle
 
 2. Run the following command inside Vim to start using Unbundle immediately,
    or add it to your *vimrc* file to start Unbundle whenever you start Vim.
 
-        :runtime bundle/vim-unbundle/unbundle.vim
+        :runtime vim-unbundle/plugin/unbundle.vim
 
 3. Run the following command inside Vim to learn more about using Unbundle.
 
