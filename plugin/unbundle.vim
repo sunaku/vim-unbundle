@@ -3,6 +3,11 @@ if v:version < 700
   finish
 endif
 
+if exists('g:loaded_unbundle') && g:loaded_unbundle
+  finish
+endif
+let g:loaded_unbundle = 1
+
 if !exists('g:unbundle_bundles_glob')
   let g:unbundle_bundles_glob = 'bundle/*'
 endif
