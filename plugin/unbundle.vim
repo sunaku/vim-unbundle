@@ -25,7 +25,7 @@ endif
 " *.vim files to configure bundles before they are unbundled.
 function! Unbundle(glob)
   " register new bundles from the given glob
-  let l:existing = {} | for l:folder in split(&runtimepath, ',') | let l:existing[l:folder] = 1 | endfor
+  let l:existing = {} | call map(split(&runtimepath, ','), 'extend(l:existing, {v:val : 1})')
   let l:bundles = join(filter(split(globpath(&runtimepath, a:glob . '/.'), "\n"), '!has_key(l:existing, v:val)'), ',')
   if !empty(l:bundles)
     let l:afters = join(filter(split(globpath(l:bundles, 'after/.'), "\n"), '!has_key(l:existing, v:val)'), ',')
