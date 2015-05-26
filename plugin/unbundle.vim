@@ -23,25 +23,25 @@ endif
 " *.vim files to configure bundles before they are unbundled.
 function Unbundle(glob)
   " register new bundles from the given glob
-  let l:existing = {} | call map(split(&runtimepath, ','), 'extend(l:existing, {v:val : 1})')
-  let l:bundles = join(filter(split(globpath(&runtimepath, a:glob . '/.'), "\n"), '!has_key(l:existing, v:val)'), ',')
-  if !empty(l:bundles)
-    let l:afters = join(filter(split(globpath(l:bundles, 'after/.'), "\n"), '!has_key(l:existing, v:val)'), ',')
-    let &runtimepath = join(filter([l:bundles, &runtimepath, l:afters], '!empty(v:val)'), ',')
+  let existing = {} | call map(split(&runtimepath, ','), 'extend(existing, {v:val : 1})')
+  let bundles = join(filter(split(globpath(&runtimepath, a:glob . '/.'), "\n"), '!has_key(existing, v:val)'), ',')
+  if !empty(bundles)
+    let afters = join(filter(split(globpath(bundles, 'after/.'), "\n"), '!has_key(existing, v:val)'), ',')
+    let &runtimepath = join(filter([bundles, &runtimepath, afters], '!empty(v:val)'), ',')
 
     " create missing helptags for documentation inside bundles
-    for l:folder in split(globpath(l:bundles, 'doc/.'), "\n")
-      if filewritable(l:folder) == 2 && empty(glob(l:folder . '/tags*'))
-        execute 'helptags' fnameescape(l:folder)
+    for folder in split(globpath(bundles, 'doc/.'), "\n")
+      if filewritable(folder) == 2 && empty(glob(folder . '/tags*'))
+        execute 'helptags' fnameescape(folder)
       endif
     endfor
 
     " configure bundles by loading {bundle_name}.vim files and
     " then emulate Vim's unpacking of the newly loaded bundles
-    let l:configs = map(split(l:bundles, ','), 'substitute(v:val, "/.$", ".vim", "")')
-    let l:plugins = split(globpath(l:bundles . ',' . l:afters, 'plugin/**/*.vim'), "\n")
-    for l:file in filter(l:configs + l:plugins, 'filereadable(v:val)')
-      execute 'source' fnameescape(l:file)
+    let configs = map(split(bundles, ','), 'substitute(v:val, "/.$", ".vim", "")')
+    let plugins = split(globpath(bundles . ',' . afters, 'plugin/**/*.vim'), "\n")
+    for file in filter(configs + plugins, 'filereadable(v:val)')
+      execute 'source' fnameescape(file)
     endfor
 
     " apply newly loaded bundles to all currently open buffers
@@ -49,7 +49,7 @@ function Unbundle(glob)
   endif
 
   " newly unbundled directories in path form
-  return l:bundles
+  return bundles
 endfunction
 
 " Unbundles directories associated with the given filetype, unless they have
