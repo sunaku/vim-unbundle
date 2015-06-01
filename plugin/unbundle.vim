@@ -60,6 +60,15 @@ function Unftbundle(type)
   return Unbundle(substitute(g:unbundle_ftbundles_glob, '{filetype}', a:type, 'g'))
 endfunction
 
+" only Unftbundle on the very first FileType trigger for any given filetype
+let s:filetypes = {}
+function s:FileType(type)
+  if !has_key(s:filetypes, a:type)
+    let s:filetypes[a:type] = 1
+    call Unftbundle(a:type)
+  endif
+endfunction
+
 " commands for manual invocation
 command Unbundle call Unbundle(g:unbundle_bundles_glob)
 execute 'command -nargs=1' (v:version >= 703 ? '-complete=filetype' : '') 'Unftbundle call Unftbundle(<f-args>)'
@@ -69,6 +78,6 @@ Unbundle
 
 " unbundle ftbundles on demand
 filetype plugin indent off
-augroup unbundle | autocmd FileType * call Unftbundle(expand('<amatch>')) | augroup END
+augroup unbundle | autocmd FileType * call s:FileType(expand('<amatch>')) | augroup END
 execute 'runtime!' substitute(g:unbundle_ftbundles_glob, '{filetype}', '*', 'g') . '/ftdetect/*.vim'
 filetype plugin indent on
