@@ -1,6 +1,6 @@
 *unbundle.vim*  Activates Vim scripts (bundles) from isolated directories.
 
-Author:   Suraj N. Kurapati <sunaku@gmail.com>
+Author:   Suraj N. Kurapati <github.com/sunaku>
 License:  Same terms as Vim itself (see |license|)
 Homepage: https://github.com/sunaku/vim-unbundle
 

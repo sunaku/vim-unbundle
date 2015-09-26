@@ -57,7 +57,7 @@ would be your *ftbundles* for `{filetype}` by default if you were using Unix.
 
 ## License
 
-Copyright 2010 Suraj N. Kurapati <sunaku@gmail.com>
+Copyright 2010 Suraj N. Kurapati <https://github.com/sunaku>
 
 Distributed under [the same terms as Vim itself][license].
 
