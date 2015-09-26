@@ -39,6 +39,10 @@ alternate location by setting `g:unbundle_ftbundles_glob`.
 
         :help unbundle.vim
 
+## Documentation
+
+Run `:help unbundle` or see the `doc/unbundle.txt` file.
+
 ## Credits
 
 * [Colin Shea](https://github.com/evaryont) came up with [the idea of
