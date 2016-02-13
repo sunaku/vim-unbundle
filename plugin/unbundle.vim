@@ -1,4 +1,6 @@
-if exists('g:loaded_unbundle') && g:loaded_unbundle | finish | endif
+if exists('g:loaded_unbundle') && g:loaded_unbundle
+  finish
+endif
 let g:loaded_unbundle = 1
 
 if !exists('g:unbundle_bundles_glob')
@@ -21,6 +23,7 @@ endif
 " matched by the given glob will be sourced before their
 " corresponding directories are unbundled.  This allows such
 " *.vim files to configure bundles before they are unbundled.
+"
 function Unbundle(glob)
   " register new bundles from the given glob
   let existing = {} | call map(split(&runtimepath, ','), 'extend(existing, {v:val : 1})')
@@ -56,6 +59,7 @@ endfunction
 " already been unbundled, and returns them in path form.  Multiple filetypes
 " can be specified as a glob.  For example, to unbundle 'html', 'css', and
 " 'javascript' ftbundles, pass '{html,css,javascript}' into this function.
+"
 function Unftbundle(type)
   return Unbundle(substitute(g:unbundle_ftbundles_glob, '{filetype}', a:type, 'g'))
 endfunction
