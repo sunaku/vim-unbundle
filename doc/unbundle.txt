@@ -5,7 +5,7 @@ License:  Same terms as Vim itself (see |license|)
 Homepage: https://github.com/sunaku/vim-unbundle
 
 ------------------------------------------------------------------------------
-INTRODUCTION                                                    *unbundle-intro*
+INTRODUCTION                                                  *unbundle-intro*
 ------------------------------------------------------------------------------
 
 Unbundle activates your |bundles| and |ftbundles| by adding them to Vim's
@@ -24,18 +24,18 @@ would be your |ftbundles| for {filetype} by default in |Unix|. However, you
 can specify an alternate location by setting |g:unbundle_ftbundles_glob|.
 
 ------------------------------------------------------------------------------
-CONFIGURATION                                                  *unbundle-config*
+CONFIGURATION                                                *unbundle-config*
 ------------------------------------------------------------------------------
 
-g:unbundle_bundles_glob                                *g:unbundle_bundles_glob*
-		Defines a filesystem |glob| pattern that matches your |bundles|.
+g:unbundle_bundles_glob                              *g:unbundle_bundles_glob*
+		Defines a |wildcard| glob pattern to match your |bundles|.
 
 		The default value of this configuration parameter is: >
 		let g:unbundle_bundles_glob = 'bundle/*'
 <
 
-g:unbundle_ftbundles_glob                            *g:unbundle_ftbundles_glob*
-		Defines a filesystem |glob| pattern that matches your |ftbundles|.
+g:unbundle_ftbundles_glob                          *g:unbundle_ftbundles_glob*
+		Defines a |wildcard| glob pattern to match your |ftbundles|.
 		Inside this pattern, all `'{filetype}'` substrings are treated
 		as |wildcards|: they are globally replaced with the |filetype|
 		of the |ftbundles| that we are currently attempting to load.
@@ -45,32 +45,32 @@ g:unbundle_ftbundles_glob                            *g:unbundle_ftbundles_glob*
 <
 
 ------------------------------------------------------------------------------
-INVOCATION                                                      *unbundle-usage*
+INVOCATION                                                    *unbundle-usage*
 ------------------------------------------------------------------------------
 
 When it is sourced, |unbundle.vim| activates your |bundles| and also registers
 an |autocommand| to activate your |ftbundles| as and when they are necessary.
 You can manually re-run some of this logic using these commands and functions:
 
-:Unbundle                                                            *:Unbundle*
+:Unbundle                                                          *:Unbundle*
 		Activates |bundles| that have not already been activated by
-		passing |g:unbundle_bundles_glob| to the |Unbundle()| function.
+		passing |g:unbundle_bundles_glob| to |Unbundle()| function.
 
-Unbundle({glob})                                                    *Unbundle()*
+Unbundle({glob})                                                  *Unbundle()*
 		Unbundles directories matched by the given {glob}, unless they
 		have already been unbundled, and returns them in 'path' form.
 
 		Any `*.vim` files that have the same basename as directories
-		matched by the given {glob} will be |source|d before their
+		matched by the given {glob} will be |:source|d before their
 		corresponding directories are unbundled.  This allows such
 		`*.vim` files to configure bundles before they are unbundled.
 
-:Unftbundle {filetype}                                             *:Unftbundle*
-Unftbundle({filetype})                                            *Unftbundle()*
+:Unftbundle {filetype}                                           *:Unftbundle*
+Unftbundle({filetype})                                          *Unftbundle()*
 		Unbundles directories associated with the given {filetype},
 		unless they have already been unbundled, and returns them in
-		'path' form.  Multiple |filetype|s can be specified as a {glob}.
-		For example, to unbundle `'html'`, `'css'`, and `'javascript'`
-		|ftbundles|, pass `'{html,css,javascript}'` into this function.
+		'path' form.  Multiple |filetype|s can be specified as a glob.
+		For example, to unbundle your "html", "css", and "javascript"
+		|ftbundles|, pass `'{html,css,javascript}'` to this function.
 
  vim:tw=78:ts=8:ft=help:norl:
