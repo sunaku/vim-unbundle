@@ -61,6 +61,10 @@ Run `:help unbundle` or see the `doc/unbundle.txt` file.
 
 ## License
 
+> Like my work? :+1: Please [spare a life] today as thanks!
+> :cow::pig::chicken::fish::speak_no_evil::v::revolving_hearts:
+[spare a life]: https://sunaku.github.io/vegan-for-life.html
+
 Copyright 2010 Suraj N. Kurapati <https://github.com/sunaku>
 
 Distributed under [the same terms as Vim itself][license].
