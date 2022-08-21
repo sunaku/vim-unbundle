@@ -41,3 +41,15 @@ function! unpack#FixHelptags(glob) abort
     endif
   endfor
 endfunction
+
+function! unpack#CommandUnpack(glob) abort
+  call unpack#UnpackGlob('pack/*/opt/'.a:glob)
+endfunction
+
+function! unpack#CommandFiletype(glob) abort
+  call unpack#UnpackGlob('pack/*/opt/'.a:glob.'=*')
+endfunction
+
+function! unpack#CommandHelptags(glob) abort
+  call unpack#FixHelptags('pack/*/*/'.a:glob)
+endfunction
